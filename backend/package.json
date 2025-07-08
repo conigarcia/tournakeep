@@ -1,0 +1,25 @@
+{
+  "name": "tournakeep-api",
+  "version": "1.0.0",
+  "description": "tournakeep API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch --env-file=.env src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conigarcia/tournakeep.git"
+  },
+  "author": "conigarcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conigarcia/tournakeep/issues"
+  },
+  "homepage": "https://github.com/conigarcia/tournakeep#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
