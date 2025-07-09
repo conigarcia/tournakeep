@@ -1,6 +1,8 @@
-import { tournamentModel } from "../models/tournamentModel.js";
+import { ERROR_MESSAGES } from "../constants/error-messages.js";
+import tournamentModel from "../models/tournamentModel.js";
+import CustomError from "../utils/customError.js";
 
-export const tournamentService = {
+const tournamentService = {
 
     async getAllTournaments() {
         return tournamentModel.getAllTournaments();
@@ -8,13 +10,13 @@ export const tournamentService = {
 
     async getTournament(id) {
         const tournament = await tournamentModel.getTournament(id);
-        if (!tournament) throw new Error("Tournament not found");
+        if (!tournament) throw new CustomError(ERROR_MESSAGES.TOURNAMENT_NOT_FOUND, 404);
         return tournament;
     },
 
     async createTournament(name) {
         const tournament = await tournamentModel.createTournament(name);
-        if (!tournament) throw new Error("Could not create tournament");
+        if (!tournament) throw new CustomError(ERROR_MESSAGES.INTERNAL_SERVER_ERROR, 500);
         return tournament;
     },
 
@@ -32,14 +34,17 @@ export const tournamentService = {
         `
 
         const tournament = await tournamentModel.updateTournament(query, values);
-        if (!tournament) throw new Error("Could not update tournament");
+        if (!tournament) throw new CustomError(ERROR_MESSAGES.TOURNAMENT_NOT_FOUND, 404);
         return tournament;        
     },
 
     async deleteTournament(id) {
+        // falta manejo de errores: ver si existe el tournament, ver si el usuario tiene permiso
         const result = await tournamentModel.deleteTournament(id);
-        if (result == 0) throw new Error("Could not delete tournament");
+        if (result == 0) throw new CustomError(ERROR_MESSAGES.INTERNAL_SERVER_ERROR, 500);
         return {message: 'Tournament deleted successfully'};
     }
 
 }
+
+export default tournamentService;

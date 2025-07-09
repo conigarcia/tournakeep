@@ -1,6 +1,6 @@
-import db from '../config/db.js'
+import db from '../config/db.js';
 
-export const tournamentModel = {
+const tournamentModel = {
 
     async getAllTournaments() {
         const result = await db.query(`
@@ -49,3 +49,5 @@ export const tournamentModel = {
     }
 
 }
+
+export default tournamentModel;

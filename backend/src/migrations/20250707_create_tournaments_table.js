@@ -5,7 +5,7 @@ export async function up() {
         await db.query(
             `create table if not exists tournaments (
                 id serial primary key,
-                name varchar(100) unique not null, 
+                name varchar(100) unique not null,
                 created_at timestamp default current_timestamp
             )`
         );
